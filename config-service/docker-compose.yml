@@ -1,0 +1,13 @@
+services:
+
+  config-service:
+    build: .
+    container_name: config-service
+    ports:
+      - "8888:8888"
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
