@@ -2,12 +2,13 @@ spring.config.import: "optional:configserver:"
 
 spring:
   application:
-    name: user-service
+    name: gateway-service
+
   cloud:
     config:
       discovery:
         enabled: false
-        service-id: config-service
+        service-id: gateway-service
       fail-fast: true
       uri: ${CONFIG_URI:http://config-service:8888}
 

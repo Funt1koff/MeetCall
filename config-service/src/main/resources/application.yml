@@ -1,13 +1,18 @@
 spring:
   application:
     name: config-service
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: ${CONFIG_URI:https://github.com/Funt1koff/meet-call-config}
+        native:
+          search-locations: file:./config
 
 eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_DEFAULT_ZONE:http://eureka-service:8761/eureka}
+
+server:
+  port: 8888

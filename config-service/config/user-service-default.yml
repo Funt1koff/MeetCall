@@ -1,0 +1,11 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: jdbc:postgresql://user-postgres:5432/users
+    username: user
+    password: user
+
+  kafka:
+    bootstrap-servers: kafka:9092

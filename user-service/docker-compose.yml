@@ -12,36 +12,6 @@ services:
     networks:
       - internal
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:24.0.1
-    container_name: meetcall_keycloak
-    command: start-dev
-    environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-      KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://keycloak-postgres/keycloak
-      KC_DB_USERNAME: keycloak
-      KC_DB_PASSWORD: keycloak
-    ports:
-      - "8080:8080"
-    depends_on:
-      - keycloak-postgres
-    networks:
-      - internal
-
-  keycloak-postgres:
-    image: postgres:15
-    container_name: meetcall_keycloak_db
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: keycloak
-    volumes:
-      - keycloak_pgdata:/var/lib/postgresql/data
-    networks:
-      - internal
-
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.0
     container_name: meetcall_zookeeper
@@ -67,8 +37,8 @@ services:
     networks:
       - internal
 
-  config-server:
-    build: ./config-server
+  config-service:
+    build: ./config-service
     ports:
       - "8888:8888"
     networks:
