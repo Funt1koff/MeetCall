@@ -44,8 +44,6 @@ services:
     environment:
       EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-service:8761/eureka
       CONFIG_URI: http://config-service:8888
-      SPRING_CLOUD_CONFIG_DISCOVERY_ENABLED: "false"
-      SPRING_CLOUD_CONFIG_DISCOVERY_SERVICE_ID: gateway-service
     depends_on:
       keycloak-postgres:
         condition: service_started
@@ -53,6 +51,8 @@ services:
         condition: service_started
       user-service:
         condition: service_healthy
+    networks:
+      - internal
 
   user-service:
     build:
@@ -62,16 +62,8 @@ services:
     ports:
       - "9090:9090"
     environment:
-      SPRING_APPLICATION_NAME: user-service
-      SPRING_CLOUD_CONFIG_DISCOVERY_ENABLED: "false"
-      SPRING_CLOUD_CONFIG_DISCOVERY_SERVICE_ID: config-service
-      SPRING_CONFIG_IMPORT: "optional:configserver:"
       EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-service:8761/eureka
-      SPRING_DATASOURCE_URL: jdbc:postgresql://user-postgres:5432/users
       CONFIG_URI: http://config-service:8888
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: user
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     depends_on:
       config-service:
         condition: service_healthy
@@ -84,7 +76,7 @@ services:
     networks:
       - internal
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:9090/actuator/health" ]
+      test: [ "CMD", "curl", "-f", "http://user-service:9090/actuator/health" ]
       interval: 10s
       timeout: 5s
       retries: 5

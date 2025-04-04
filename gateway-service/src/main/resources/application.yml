@@ -8,7 +8,7 @@ spring:
     config:
       discovery:
         enabled: false
-        service-id: gateway-service
+        service-id: config-service
       fail-fast: true
       uri: ${CONFIG_URI:http://config-service:8888}
 
