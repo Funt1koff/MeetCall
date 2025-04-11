@@ -1,4 +1,25 @@
 services:
+
+  zipkin-service:
+    build:
+      context: ./zipkin-service
+      dockerfile: Dockerfile
+    container_name: zipkin-service
+    ports:
+      - "9411:9411"
+    networks:
+      - internal
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://zipkin-service:9412/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      eureka-service:
+        condition: service_healthy
+      config-service:
+        condition: service_healthy
+
   eureka-service:
     build:
       context: ./eureka-service

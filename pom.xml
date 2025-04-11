@@ -21,6 +21,7 @@
     <module>user-service</module>
     <module>gateway-service</module>
     <module>meetcall-dto</module>
+    <module>zipkin-service</module>
   </modules>
 
   <properties>

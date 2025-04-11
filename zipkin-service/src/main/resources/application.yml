@@ -1,0 +1,17 @@
+spring.config.import: "optional:configserver:"
+
+spring:
+  application:
+    name: zipkin-service
+  cloud:
+    config:
+      discovery:
+        enabled: false
+        service-id: config-service
+      fail-fast: true
+      uri: ${CONFIG_URI:http://config-service:8888}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://eureka-service:8761/eureka}
