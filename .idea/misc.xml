@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/config-service/pom.xml" />
         <option value="$PROJECT_DIR$/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/gatewat-service/pom.xml" />
+        <option value="$PROJECT_DIR$/meetcall-dto/pom.xml" />
       </list>
     </option>
   </component>

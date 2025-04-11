@@ -20,25 +20,33 @@
     <module>eureka-service</module>
     <module>user-service</module>
     <module>gateway-service</module>
+    <module>meetcall-dto</module>
   </modules>
 
   <properties>
     <java.version>21</java.version>
     <spring-cloud.version>2024.0.1</spring-cloud.version>
     <cloud.config.version>4.2.1</cloud.config.version>
+    <prometheus.version>1.14.5</prometheus.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <lombok.version>1.18.38</lombok.version>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+      <version>${prometheus.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <optional>true</optional>
     </dependency>
   </dependencies>
 

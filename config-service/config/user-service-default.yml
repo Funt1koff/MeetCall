@@ -6,6 +6,18 @@ spring:
     url: jdbc:postgresql://user-postgres:5432/users
     username: user
     password: user
+  jpa:
+    hibernate:
+      ddl-auto: create
+  open-in-view: false
+
 
   kafka:
     bootstrap-servers: kafka:9092
+
+management:
+  server:
+    port: 9091
+  metrics:
+    tags:
+      application: ${spring.application.name}
